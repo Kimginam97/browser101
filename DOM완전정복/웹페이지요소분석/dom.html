@@ -47,12 +47,25 @@
       // const images=document.querySelectorAll('img');
       // console.log(images);
       const section=document.querySelector('section');
+
+
+      // 부분적인 업데이트
       const h2=document.createElement('h2');
       h2.setAttribute('class','title'); //<h2 class="title"></h2>
       h2.textContent='This is a title'; //<h2 class="title">This is a title</h2>
       const h3=document.querySelector('h3');
       // section.appendChild(h2);
       section.insertBefore(h2,h3);
+
+
+      // 전체적인업데이트
+      // section.innerHTML=`
+      //   <img src="img/avatar.png" alt="avatar"/>
+      //   <h1 id="brand">Dream Coding</h1>
+      // `;
+
+      // h2삭제
+      section.removeChild(h2);
     </script>
   </body>
 </html>
