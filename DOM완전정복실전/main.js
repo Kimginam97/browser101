@@ -20,32 +20,45 @@ function onAdd(){
     
 }
 
+let id=0;//UUID
 function createItem(text){
     const itemRow=document.createElement('li');
     itemRow.setAttribute('class','item__row');
+    itemRow.setAttribute('data-id',id);
+    itemRow.innerHTML=`
+        <div class="item">
+            <span class="item__delete">${text}</span>
+            <button class="item__delete">
+              <i class="fas fa-trash-alt" data-id=${id}></i>
+            </button>
+        </div>
+        <div class="item__divider"></div>
+    `;
 
-    const item=document.createElement('div');
-    item.setAttribute('class','item');
 
-    const name=document.createElement('span');
-    name.setAttribute('class','item__name');
-    name.innerText=text;
+    // const item=document.createElement('div');
+    // item.setAttribute('class','item');
 
-    const deleteBtn=document.createElement('button');
-    deleteBtn.setAttribute('class','item__delete');
-    deleteBtn.innerHTML='<i class="fas fa-trash-alt"></i>';
-    deleteBtn.addEventListener('click',()=>{
-        items.removeChild(itemRow);
-    })
+    // const name=document.createElement('span');
+    // name.setAttribute('class','item__name');
+    // name.innerText=text;
 
-    const itemDivider=document.createElement('div');
-    itemDivider.setAttribute('class','item__divider');
+    // const deleteBtn=document.createElement('button');
+    // deleteBtn.setAttribute('class','item__delete');
+    // deleteBtn.innerHTML='<i class="fas fa-trash-alt"></i>';
+    // deleteBtn.addEventListener('click',()=>{
+    //     items.removeChild(itemRow);
+    // })
 
-    item.appendChild(name);
-    item.appendChild(deleteBtn);
+    // const itemDivider=document.createElement('div');
+    // itemDivider.setAttribute('class','item__divider');
 
-    itemRow.appendChild(item);
-    itemRow.appendChild(itemDivider);
+    // item.appendChild(name);
+    // item.appendChild(deleteBtn);
+
+    // itemRow.appendChild(item);
+    // itemRow.appendChild(itemDivider);
+    id++;
     return itemRow;
 }
 
@@ -58,3 +71,14 @@ input.addEventListener('keypress',(event)=>{
         onAdd();
     }
 })
+
+items.addEventListener('click',event=>{
+    const id=event.target.dataset.id;
+    // if(event.target.nodeName==='I'){
+    //     console.log('he');
+    // }
+    if(id){
+        const toBeDeleted=document.querySelector(`.item__row[data-id="${id}"]`);
+        toBeDeleted.remove();
+    }
+});
