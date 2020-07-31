@@ -29,7 +29,7 @@ function onItemClick(item){
     if(!started){
         return;
     }
-    if(itme==='carrot'){
+    if(item==='carrot'){
         score++;
         updateScoreBoard();
         if(score===CARROT_COUNT){
@@ -75,7 +75,7 @@ function finishGame(win){
         sound.playBug();
     }
     stopGameTimer();
-    stopSound(bgSound);
+    sound.stopBackground();
     gameFinishBanner.showWithText(win?'YOU WON!' : 'YOU LOST');
 }
 
